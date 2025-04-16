@@ -1,0 +1,13 @@
+{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "dependencies": {
+        "sv": "^0.8.1",
+      },
+    },
+  },
+  "packages": {
+    "sv": ["sv@0.8.1", "", { "bin": { "sv": "dist/bin.js" } }, "sha512-EAo3O6nw8jF+187I/nOS5gcIG50eT9VQ61v1K1CFrozbnJV5QPYJMiKftruPYNKvvE2Z5PI5tWr4FYoFHpfJYw=="],
+  }
+}
