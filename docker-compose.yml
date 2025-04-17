@@ -1,5 +1,5 @@
 services:
-  api:
+  backend:
     build:
       context: ./backend/
     container_name: backend
@@ -8,8 +8,6 @@ services:
     ports:
       - '8000:8000'
     restart: "no"
-    networks:
-      - ruby
   frontend:
     build:
       context: ./frontend/
@@ -19,7 +17,3 @@ services:
     ports:
       - '3000:3000'
     restart: "no"
-    networks:
-      - ruby
-networks:
-  ruby:
