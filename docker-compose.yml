@@ -3,6 +3,8 @@ services:
     build:
       context: ./backend/
     container_name: backend
+    depends_on:
+      - db
     environment:
       PORT: 8000
     ports:
@@ -17,3 +19,28 @@ services:
     ports:
       - '3000:3000'
     restart: "no"
+  db:
+    image: 'postgres:15'
+    container_name: pokedex
+    restart: always
+    ports: 
+      - 15432:5423
+    env_file:
+      - .env
+    volumes:
+      - ${PWD}/db-data/:/var/lib/postgresql/data/
+      - ${PWD}/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD?Variable not set}
+      - POSTGRES_USER=${POSTGRES_USER?Variable not set}
+      - POSTGRES_DB=${POSTGRES_DB?Variable not set}
+
+
+
