@@ -1,0 +1,25 @@
+services:
+  api:
+    build:
+      context: ./backend/
+    container_name: backend
+    environment:
+      PORT: 8000
+    ports:
+      - '8000:8000'
+    restart: "no"
+    networks:
+      - ruby
+  frontend:
+    build:
+      context: ./frontend/
+    container_name: frontend
+    environment:
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    restart: "no"
+    networks:
+      - ruby
+networks:
+  ruby:
